@@ -1,0 +1,110 @@
+/* Estilo geral do corpo */
+body.perfil-body {
+  font-family: Arial, sans-serif;
+  background-color: #fdd835;  /* Cor de fundo amarela */
+  background-image: url('https://i.pinimg.com/1200x/35/8e/4a/358e4ac74fa19fc863a9d08c6c8df887.jpg');
+  background-size: cover;  /* Faz a imagem cobrir toda a área */
+  background-position: center;  /* Centraliza a imagem */
+  background-attachment: fixed;  /* Faz a imagem ficar fixa ao rolar a página */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* Ocupa toda a altura da tela */
+}
+
+/* Container principal com altura aumentada */
+.perfil-container {
+  background-color: rgba(255, 255, 255, 0.9);  /* Fundo branco com opacidade para destacar o conteúdo */
+  padding: 40px;  /* Aumentei o padding para dar mais espaço dentro do container */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;  /* Ajustado para ser quase toda a largura da tela */
+  width: 100%;
+  min-height: 90%;  /* Ajustado para ocupar quase toda a altura */
+  box-sizing: border-box;
+  border: 1px solid #ddd; /* Borda mais sutil */
+  overflow: auto; /* Para caso o conteúdo seja maior que o container */
+}
+
+/* Cabeçalho do perfil */
+.perfil-header h1 {
+  margin: 0;
+  text-align: center;
+  color: #333;
+  font-size: 28px; /* Tamanho da fonte aumentado */
+  margin-bottom: 20px;
+}
+
+/* Foto de perfil */
+.perfil-photo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.perfil-photo {
+  width: 120px; /* Aumentado para maior destaque */
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #fdd835; /* Cor de borda amarela */
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.perfil-photo-label {
+  cursor: pointer;
+  color: #fdd835;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* Estilos dos campos de formulário */
+.perfil-details label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.perfil-details input {
+  width: 100%;
+  padding: 12px; /* Maior padding para melhorar a interação */
+  margin-bottom: 20px; /* Aumentado o espaçamento entre os campos */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Seção de alterar senha */
+.perfil-password {
+  margin-top: 20px;
+}
+
+.perfil-password h2 {
+  font-size: 20px; /* Aumentado para maior destaque */
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.perfil-password input {
+  margin-bottom: 15px; /* Aumentado o espaçamento entre os campos */
+}
+
+/* Botão de salvar */
+button {
+  width: 100%;
+  background-color: #fdd835; /* Cor amarela */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fbc02d; /* Cor de hover mais escura */
+}
