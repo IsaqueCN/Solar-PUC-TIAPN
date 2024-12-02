@@ -105,6 +105,12 @@ button {
   cursor: pointer;
 }
 
+#sairbutton {
+  background-color: #f96262;
+}
+#sairbutton:hover {
+  background-color: #f34747;
+}
 button:hover {
   background-color: #fbc02d; /* Cor de hover mais escura */
 }

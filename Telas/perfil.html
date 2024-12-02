@@ -11,13 +11,8 @@
     <div class="perfil-header">
       <h1>Meu Perfil</h1>
     </div>
-    <div class="perfil-photo-container">
-      <img src="default-profile.jpg" alt="Foto de Perfil" class="perfil-photo">
-      <label for="photo-upload" class="perfil-photo-label">Alterar foto</label>
-      <input type="file" id="photo-upload" name="photo" style="display: none;">
-    </div>
     <div class="perfil-details">
-      <form action="/update-profile" method="POST">
+      <form id="formupdate" method="POST">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" placeholder="Digite seu nome" value="João da Silva">
 
@@ -25,8 +20,10 @@
         <input type="email" id="email" name="email" placeholder="Digite seu email" value="joao.silva@example.com">
 
         <label for="phone">Telefone:</label>
-        <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" value="(11) 99999-9999">
+        <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone">
 
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Digite seu endereçoo">
         <!-- Alteração de senha -->
         <div class="perfil-password">
           <h2>Alterar Senha</h2>
@@ -39,10 +36,11 @@
           <label for="confirm-password">Confirmar nova senha:</label>
           <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirme sua nova senha">
         </div>
-
         <button type="submit">Salvar</button>
       </form>
+      <button id="sairbutton">Sair</button>
     </div>
   </div>
+  <script src="/perfil.js"></script>
 </body>
 </html>

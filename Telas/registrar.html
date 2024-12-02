@@ -14,19 +14,22 @@
       <form id="registerForm">
         <div class="input-group">
           <label for="nome">Nome:</label>
-          <input type="text" id="nome" placeholder="Digite seu nome" required>
+          <input type="text" name="username" id="nome" placeholder="Digite seu nome" required>
+          <span class='message' id="nomeAviso"></span>
         </div>
         <div class="input-group">
           <label for="email">E-mail:</label>
-          <input type="email" id="email" placeholder="Digite seu e-mail" required>
+          <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
         </div>
         <div class="input-group">
           <label for="senha">Senha:</label>
-          <input type="password" id="senha" placeholder="Crie uma senha" required>
+          <input type="password" name="senha" id="senha" placeholder="Crie uma senha" required>
+          <span class='message' id="senhaAviso"></span>
         </div>
         <div class="input-group">
           <label for="confirmaSenha">Confirmar Senha:</label>
           <input type="password" id="confirmaSenha" placeholder="Confirme sua senha" required>
+          <span class='message' id="confirmaSenhaAviso"></span>
         </div>
         <button type="submit">Registrar</button>
         <p class="switch">
@@ -35,6 +38,6 @@
       </form>
     </div>
   </div>
-  <script src="/LRscript.js"></script>
+  <script src="/registrar.js"></script>
 </body>
 </html>
