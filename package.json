@@ -1,6 +1,13 @@
 {
+  "main": "script.js",
+  "scripts": {
+    "server": "nodemon script.js"
+  },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1",
-    "express-session": "^1.18.1"
+    "express-session": "^1.18.1",
+    "mysql2": "^3.11.5",
+    "nodemon": "^3.1.7"
   }
 }
