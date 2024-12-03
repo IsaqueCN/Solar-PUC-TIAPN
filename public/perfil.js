@@ -33,10 +33,6 @@ function PrepararSite(dados) {
 
 formUpdate.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(usuario);
-    console.log(cadastro);
-    //nome, email, telefone, endereco, senha, idcliente, idcadastro
-    
     let Fnome = (nome.value ?? cadastro.Login)
     let Fendereco = ((endereco.value == null || endereco.value == '') ? usuario.Endereco : endereco.value)
     let Ftelefone =(telefone.value == null || telefone.value == '') ? usuario.Telefone : telefone.value;
