@@ -3,11 +3,8 @@ const path = require('path');
 const session = require('express-session');
 const cors = require('cors');
 const connectionDB = require('./DBScripts/db')
-const SQLFunctions = require('./DBScripts/SQLFunctions')
+const SQLFunctions = require('./DBScripts/SQL')
 const rotasAPI = require('./APIRotas');
-const TestConnectionDB = require('./DBScripts/db');
-
-TestConnectionDB(); 
 
 let app = express();
 

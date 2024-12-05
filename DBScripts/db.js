@@ -1,17 +1,20 @@
 const mysql = require('mysql2');
-const config = require('./config')
+const config = {
+    host: 'localhost',
+    user: 'root',
+    password: 'admin',
+    database: 'solar',
+};
 
-const TestConnectionDB = async () => {
-    const pool = mysql.createPool(config);
+const pool = mysql.createPool(config);
 
-    pool.getConnection((err, connection) => {
-        if (err) {
-            console.log({error: err.message})
-        }
-        
-        console.log("Conectado no MYSQL Database")
-        connection.release();
-    })
-}
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.log({ error: err.message })
+    }
 
-module.exports = TestConnectionDB;
+    console.log("Conectado no MYSQL Database")
+    connection.release();
+})
+
+module.exports = pool;
