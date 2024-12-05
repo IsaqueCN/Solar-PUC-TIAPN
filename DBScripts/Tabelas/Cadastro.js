@@ -14,6 +14,20 @@ const Get = (login) => {
     });
 };
 
+const GetAll = () => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM cadastro`;
+
+        pool.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
 const NovoID = () => {
     return new Promise((resolve, reject) => {
         const query = `SELECT Max(IDCadastro) FROM Cadastro`;
@@ -28,4 +42,4 @@ const NovoID = () => {
     });
 };
 
-module.exports = {NovoID, Get};
+module.exports = {NovoID, Get, GetAll};

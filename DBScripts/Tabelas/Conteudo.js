@@ -32,6 +32,20 @@ const Get = (IDConteudo) => {
     });
 };
 
+const GetAll = () => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM conteudo`;
+
+        pool.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
 const GetByName = (Nome) => {
     return new Promise((resolve, reject) => {
         const query = `SELECT * FROM conteudo WHERE Nome = '${Nome}'`;
@@ -84,5 +98,5 @@ const Create = async (nome, categoria, palavraChave, descricao, resumo, texto) =
         return ex;
     }
 }
-module.exports = {Get, GetByName, GetByCategory, GetPalavrasChaves, Create};
+module.exports = {Get, GetAll, GetByName, GetByCategory, GetPalavrasChaves, Create};
 

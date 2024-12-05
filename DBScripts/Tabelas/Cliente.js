@@ -7,6 +7,20 @@ const Cadastro = require("./Cadastro");
 
 const Get = (IDCadastro) => { return ObterPerfil("cliente", IDCadastro) };
 
+const GetAll = () => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM cliente`;
+
+        pool.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
 const NovoID = () => {
     return new Promise((resolve, reject) => {
         const query = `SELECT Max(IDCliente) FROM cliente`;
@@ -71,4 +85,4 @@ const Update = async (nome, email, telefone, endereco, senha, idcliente, idcadas
     }
 };
 
-module.exports = { Get, NovoID, ObterPerfil, Create, Update };
+module.exports = { Get, GetAll, NovoID, ObterPerfil, Create, Update };

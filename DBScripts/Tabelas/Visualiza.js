@@ -1,12 +1,13 @@
 const util = require('util');
 const pool = require('../db');
+const { create } = require('domain');
 const query = util.promisify(pool.query).bind(pool);
 
-const Get = (IDCliente, CNPJ = null) => {
+const Get = (IDCliente, IDConteudo = null) => {
     return new Promise((resolve, reject) => {
-        let query = `SELECT * FROM procura WHERE fk_Cliente_IDCliente = '${IDCliente}'`
-        if (CNPJ)
-            query += ` AND fk_EmpresasParceiras_CNPJ = '${CNPJ}'`;
+        let query = `SELECT * FROM visualiza WHERE fk_Cliente_IDCliente = '${IDCliente}'`
+        if (IDConteudo)
+            query += ` AND fk_Conteudo_IDConteudo = '${IDConteudo}'`;
 
         pool.query(query, (err, results) => {
             if (err) {
@@ -20,7 +21,7 @@ const Get = (IDCliente, CNPJ = null) => {
 
 const GetAll = () => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM procura`;
+        const query = `SELECT * FROM visualiza`;
 
         pool.query(query, (err, results) => {
             if (err) {
@@ -32,12 +33,13 @@ const GetAll = () => {
     });
 };
 
-const Create = async (IDCliente, CNPJ) => {
+const Create = async (IDCliente, IDConteudo) => {
     try {
-        const inserir = `INSERT INTO procura (fk_Cliente_IDCliente, fk_EmpresasParceiras_CNPJ) VALUES (${IDCliente}, ${CNPJ}, curdate())`;
+        const inserir = `INSERT INTO visualiza (fk_Cliente_IDCliente, fk_Conteudo_IDConteudo) VALUES (${IDCliente}, ${IDConteudo})`;
         await query(inserir)
     } catch (ex) {
         return ex;
     }
 }
-module.exports = {Get, GetAll, Create}
+
+module.exports = {GetAll, Get, Create}

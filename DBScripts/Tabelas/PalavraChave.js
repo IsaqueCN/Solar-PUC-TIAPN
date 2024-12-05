@@ -30,6 +30,20 @@ const Get = (IDPalavraChave) => {
     });
 };
 
+const GetAll = () => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM palavrachave`;
+
+        pool.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
 const GetByName = (nome) => {
     return new Promise((resolve, reject) => {
         const query = `SELECT * FROM palavrachave WHERE PalavraChave = '${nome}'`;
@@ -60,4 +74,4 @@ const Create = async (nome) => {
     }
 }
 
-module.exports = {Get, GetByName, Create};
+module.exports = {Get, GetAll, GetByName, Create};

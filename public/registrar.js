@@ -65,7 +65,7 @@ async function login() {
 }).then((data) => {
     if (data.status == 200) {
         setTimeout(() => {
-            //window.location.href = '/perfil'
+            window.location.href = '/perfil'
         }, 100);
     } else {
         aviso.textContent = "Usuário ou Senha incorretos.";

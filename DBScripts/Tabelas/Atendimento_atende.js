@@ -28,4 +28,18 @@ const Get = (Protocolo) => {
     });
 };
 
-module.exports = {Get};
+const GetAll = () => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM atendimento_atende`;
+
+        pool.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+module.exports = {Get, GetAll};

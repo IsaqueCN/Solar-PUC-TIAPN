@@ -20,6 +20,20 @@ const Get = (CNPJ) => {
     });
 };
 
+const GetAll = () => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM empresasparceiras`;
+
+        pool.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
 const Create = async (cnpj, nome, endereco, telefone, senha) => {
     let novoCadastroID = (await Cadastro.NovoID());
 
@@ -39,4 +53,4 @@ const Create = async (cnpj, nome, endereco, telefone, senha) => {
     }
 }
 
-module.exports = {Get, Create};
+module.exports = {Get, GetAll, Create};
