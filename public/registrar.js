@@ -15,25 +15,25 @@ document.getElementById('registerForm')?.addEventListener('submit', async functi
   senhaAviso.textContent = "";
   confirmaSenhaAviso.textContent = "";
   nomeAviso.textContent = "";
-  let jaExiste = await (await (fetch(`/perfil/${nome.value}`))).json();
-
+  let jaExiste = await (await (fetch(`/api/cadastro/${nome.value}`))).json();
+console.log(jaExiste);
   if (nome.Length > 50)
     nomeAviso.textContent = "Nome de usuário muito grande";
   else if (nome.Length < 5)
     nomeAviso.textContent = "Nome de usuário muito pequeno";
-  else if (!jaExiste.error)
+  else if (jaExiste.sucess == true)
     nomeAviso.textContent = "Nome de usuário já existe"
   else if (senha.value.length < 8) {
     senhaAviso.textContent = "A senha deve ter no mínimo 8 caracteres";
   } else if (senha.value != confirmaSenha.value) {
     confirmaSenhaAviso.textContent = "As senhas não são iguais"
-  } else if (jaExiste.error) {
+  } else {
     await registrar();
   }
 })
 
 async function registrar() {
-  let data = await fetch('/registrar', {
+  let data = await fetch('/api/registrar', {
     method: 'POST',
     body: JSON.stringify({
       'nome': nome.value,
@@ -46,6 +46,29 @@ async function registrar() {
   })
 
   if (data.status == 200) {
-    window.location.href = '/login'
+    setTimeout(() => {
+      login();
+    }, 100);
   }
+}
+
+async function login() {
+  fetch('/api/login', {
+    method: 'POST',
+    body: JSON.stringify({
+        'username': nome.value,
+        'senha': senha.value,
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+}).then((data) => {
+    if (data.status == 200) {
+        setTimeout(() => {
+            //window.location.href = '/perfil'
+        }, 100);
+    } else {
+        aviso.textContent = "Usuário ou Senha incorretos.";
+    }
+})
 }

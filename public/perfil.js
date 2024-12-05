@@ -6,14 +6,14 @@ const oldpass = document.getElementById("old-password");
 const senha = document.getElementById("new-password");
 const sairButton = document.getElementById("sairbutton");
 const formUpdate = document.getElementById("formupdate");
-let usuario
-let cadastro
+let clienteJSON
+let cadastroJSON
 
-fetch('/perfil/get').then((data) => {
+fetch('/api/perfil').then((data) => {
     data.json().then((result) => {
-        usuario = result[1];
-        cadastro = result[0];
-        PrepararSite(result[1])
+        clienteJSON = result[1];
+        cadastroJSON = result[0];
+        PrepararSite(clienteJSON)
     });
 });
 
@@ -24,7 +24,6 @@ sairButton.addEventListener('click', () => {
 })
 
 function PrepararSite(dados) {
-    console.log(dados);
     nome.value = dados.Nome;
     email.value = dados.Email;
     telefone.value = dados.Telefone;
@@ -33,15 +32,15 @@ function PrepararSite(dados) {
 
 formUpdate.addEventListener("submit", (e) => {
     e.preventDefault();
-    let Fnome = (nome.value ?? cadastro.Login)
-    let Fendereco = ((endereco.value == null || endereco.value == '') ? usuario.Endereco : endereco.value)
-    let Ftelefone =(telefone.value == null || telefone.value == '') ? usuario.Telefone : telefone.value;
-    let Fsenha = ((senha.value == null || senha.value == '') ? cadastro.Senha : senha.value)
-    let Femail = (email.value ?? usuario.Email)
-    let IDCliente = (usuario.IDCliente)
-    let IDCadastro = (cadastro.IDCadastro)
+    let Fnome = (nome.value ?? cadastroJSON.Login)
+    let Fendereco = ((endereco.value == null || endereco.value == '') ? clienteJSON.Endereco : endereco.value)
+    let Ftelefone =(telefone.value == null || telefone.value == '') ? clienteJSON.Telefone : telefone.value;
+    let Fsenha = ((senha.value == null || senha.value == '') ? cadastroJSON.Senha : senha.value)
+    let Femail = (email.value ?? clienteJSON.Email)
+    let IDCliente = (clienteJSON.IDCliente)
+    let IDCadastro = (cadastroJSON.IDCadastro)
 
-    fetch('/updateCliente', {
+    fetch('/api/update', {
         method: 'POST',
         body: JSON.stringify({
             'nome': Fnome,
@@ -57,7 +56,9 @@ formUpdate.addEventListener("submit", (e) => {
         }
     }).then((data) => {
         if (data.status == 200) {
-            window.location.href = '/perfil'
+            setTimeout(() => {
+                window.location.reload();
+            }, 150);
         } else {
             aviso.textContent = "Usuário ou Senha incorretos.";
         }

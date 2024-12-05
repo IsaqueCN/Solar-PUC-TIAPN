@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 const config = require('./config')
 
-const connectionDB = async () => {
+const TestConnectionDB = async () => {
     const pool = mysql.createPool(config);
 
     pool.getConnection((err, connection) => {
@@ -14,4 +14,4 @@ const connectionDB = async () => {
     })
 }
 
-module.exports = connectionDB;
+module.exports = TestConnectionDB;

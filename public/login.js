@@ -6,7 +6,7 @@ document.getElementById('loginClienteForm')?.addEventListener('submit', function
     event.preventDefault();
     aviso.textContent = "";
 
-    fetch('/login', {
+    fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({
             'username': nome.value,
@@ -17,7 +17,9 @@ document.getElementById('loginClienteForm')?.addEventListener('submit', function
         }
     }).then((data) => {
         if (data.status == 200) {
-            window.location.href = '/perfil'
+            setTimeout(() => {
+                window.location.href = '/perfil'
+            }, 150);
         } else {
             aviso.textContent = "Usuário ou Senha incorretos.";
         }
