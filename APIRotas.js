@@ -5,15 +5,18 @@ const SQL = require('./DBScripts/SQL')
 function autoLogin(req, res, next) {
     if (req.session.autenticado == true) {
         res.redirect('/perfil');
+        console.log(res.session);
     } else {
         next();
     }
 }
 
-function authCheck(req, res, next) {
+function authCheck (req, res, next) {
     if (!req.session.autenticado)
         res.redirect('/login');
-    else {
+    else if (req.session.user.Status != "aprovado"){
+        res.redirect('/cadastroAguarde');
+    } else {
         next();
     }
 }
@@ -212,6 +215,42 @@ app.get('/visualiza', async (req, res) => {
     }
 })
 
+app.get('/entrega', async (req, res) => {
+    let result = await SQL.Entrega.GetAll();
+
+    if (result)
+        res.status(200).send(result);
+    else
+        res.status(404).send({ sucess: false });
+})
+
+app.get('/entrega/:nome', async (req, res) => {
+    let result = await SQL.GetByName(req.params.nome);
+
+    if (result)
+        res.status(200).send(result);
+    else
+        res.status(404).send({ sucess: false });
+})
+
+app.get('/feedback', async (req, res) => {
+    let result = await SQL.Feedback.GetAll();
+
+    if (result)
+        res.status(200).send(result);
+    else
+        res.status(404).send({ sucess: false });
+})
+
+app.get('/feedback/:feedbackID', async (req, res) => {
+    let result = await SQL.Feedback.Get(req.params.feedbackID);
+
+    if (result)
+        res.status(200).send(result);
+    else
+        res.status(404).send({ sucess: false });
+})
+
 app.post('/login', async (req, res) => {
     let user = await SQL.Cadastro.Get(req.body.username)
     if (user && user.Senha == req.body.senha) {
@@ -299,6 +338,20 @@ app.post('/empresasparceiras', async (req, res) => {
         return
     }
     let result = await SQL.EmpresasParceiras.Create(req.body.cnpj, req.body.nome, req.body.endereco, req.body.telefone, req.body.senha);
+    if (result) {
+        console.log(result)
+        res.status(404).send({ success: false, error: result });
+    }
+    else
+        res.status(200).send({ sucess: true });
+})
+
+app.post('/feedback', async (req, res) => {
+    if (req.body.funcionalidade == null || req.body.nota == null || req.body.descricao == null || req.body.idcliente == null) {
+        res.status(404).send({ sucess: false, error: "Parametros necessários: funcionalidade, nota, descricao, idcliente"});
+        return
+    }
+    let result = await SQL.Feedback.Create(req.body.idcliente, req.body.funcionalidade, req.body.nota, req.body.descricao);
     if (result) {
         console.log(result)
         res.status(404).send({ success: false, error: result });

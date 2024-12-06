@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8c291;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+button {
+    margin-top: 20px; 
+    padding: 10px 20px; 
+    font-size: 1.2em; 
+    color: white; 
+    background-color: red;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
+div {
+    text-align: center;
+}

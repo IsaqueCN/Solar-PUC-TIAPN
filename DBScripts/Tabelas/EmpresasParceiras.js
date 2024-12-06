@@ -42,7 +42,7 @@ const Create = async (cnpj, nome, endereco, telefone, senha) => {
             throw "Empresta já existente";
 
         await Empresa.Create("Solar", Empresa.EmpresaCNPJ);
-        const inserirCadastro = `INSERT INTO cadastro (TipoUsuario, Senha, Login, IDCadastro, Data) VALUES ('EmpresaParceira', '${senha}', '${nome}', ${novoCadastroID}, curdate())`;
+        const inserirCadastro = `INSERT INTO cadastro (TipoUsuario, Senha, Login, IDCadastro, Data, Status) VALUES ('EmpresaParceira', '${senha}', '${nome}', ${novoCadastroID}, curdate(), 'pendente')`;
         const inserirEmpresaParceira = `INSERT INTO empresasparceiras (CNPJ, Nome, Endereco, Telefone, fk_Empresa_CNPJ_Empresa, fk_Cadastro_IDCadastro) VALUES(${cnpj}, '${nome}','${endereco}', '${telefone}', '${Empresa.EmpresaCNPJ}', '${novoCadastroID}');`;
         
         await query(inserirCadastro)

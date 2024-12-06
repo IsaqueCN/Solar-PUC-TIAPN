@@ -20,7 +20,10 @@ app.use("/api", rotasAPI);
 
 function autoLogin (req, res, next) {
     if (req.session.autenticado == true) {
-        res.redirect('/perfil');
+        if (req.session.user.Status == "aprovado")
+            res.redirect('/perfil');
+        else
+            res.redirect('/cadastroAguarde')
     } else {
         next();
     }
@@ -29,7 +32,9 @@ function autoLogin (req, res, next) {
 function authCheck (req, res, next) {
     if (!req.session.autenticado)
         res.redirect('/login');
-    else {
+    else if (req.session.user.Status != "aprovado"){
+        res.redirect('/cadastroAguarde');
+    } else {
         next();
     }
 }
@@ -51,6 +56,10 @@ app.get('/perfil', authCheck, (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
+})
+
+app.get('/cadastroAguarde', (req, res) => {
+    res.status(200).sendFile(__dirname + '/Telas/aguardeCadastro.html');
 })
 
 app.all('*', (req, res) => {
