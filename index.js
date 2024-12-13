@@ -5,6 +5,7 @@ const cors = require('cors');
 const connectionDB = require('./DBScripts/db')
 const SQL = require('./DBScripts/SQL')
 const rotasAPI = require('./APIRotas');
+const PORT = 5000;
 
 let app = express();
 
@@ -65,6 +66,6 @@ app.get('/cadastroAguarde', (req, res) => {
 app.all('*', (req, res) => {
     res.status(404).send("<h1>Página não encontrada</h1>");
 })
-app.listen(5000, () => {
-    console.log("Escutando no port 5000, dir: ");
+app.listen(PORT, () => {
+    console.log(`Escutando no port ${PORT}, localhost:${PORT}`);
 })
