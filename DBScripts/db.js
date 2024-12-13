@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
-const config = {
+const config = { // Configuração para conexão com SQL
     host: 'localhost',
     user: 'root',
     password: 'admin',
-    database: 'solar',
+    database: 'solar2',
 };
 
 const pool = mysql.createPool(config);
